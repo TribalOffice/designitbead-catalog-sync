@@ -170,7 +170,13 @@ function run(cmd) {
   console.log(`Weekly catalog sync — ${date}`);
 
   const prev = loadJsonOrNull(NORM_PATH);
-  console.log(`Previous snapshot: ${prev ? `${prev.length} products` : "(none — first run)"}`);
+  const prevCount = prev ? prev.length : 0;
+  console.log(`Previous snapshot: ${prev ? `${prevCount} products` : "(none — first run)"}`);
+
+  // Back up the previous snapshot before the pull so we can restore on failure.
+  // Without this, a 403/blocked/empty pull would silently destroy the baseline.
+  const BACKUP_PATH = path.join(OUT_DIR, ".previous.normalized.json");
+  if (prev) fs.copyFileSync(NORM_PATH, BACKUP_PATH);
 
   // Pull + normalize. shipwreck.js writes to out/shipwreck_raw and out/shipwreck_seed_beads.normalized.json.
   run(`node "${path.join(ROOT, "shipwreck.js")}"`);
@@ -179,6 +185,20 @@ function run(cmd) {
   const next = loadJsonOrNull(NORM_PATH);
   if (!next) { console.error("No new snapshot was produced — aborting."); process.exit(1); }
   console.log(`New snapshot: ${next.length} products`);
+
+  // Sanity guard: Shipwreck has ~5,800 products. A pull returning 0 or a tiny
+  // fraction is almost certainly a 403/block/network failure, NOT real de-listings.
+  // Restore the baseline rather than declare a catastrophe.
+  if (prev && next.length < Math.max(100, prevCount * 0.5)) {
+    console.error(`\n⚠ ABORTING: new pull returned ${next.length} products vs previous ${prevCount}.`);
+    console.error(`This is almost certainly a fetch failure (403, rate limit, network), not real catalog change.`);
+    console.error(`Restoring previous snapshot from backup. No diff written.`);
+    fs.copyFileSync(BACKUP_PATH, NORM_PATH);
+    fs.unlinkSync(BACKUP_PATH);
+    process.exit(2);
+  }
+  // Pull was healthy — clear the backup.
+  if (fs.existsSync(BACKUP_PATH)) fs.unlinkSync(BACKUP_PATH);
 
   const d = prev ? diff(prev, next) : { newProducts: [], removedProducts: [], priceChanges: [], wentOutOfStock: [], backInStock: [] };
   const report = summarize(prev, next, d);
