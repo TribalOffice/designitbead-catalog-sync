@@ -1,26 +1,32 @@
-// Import the curated 26 Preciosa Opaque 11/0 colors into Supabase, then auto-match
-// each one against Shipwreck SKUs and populate supplier_inventory.
+// Populate supplier_inventory from Shipwreck snapshot, anchored on the existing
+// bead_colors.sku column (much more reliable than name matching — your curation
+// already records which Shipwreck SKU represents each color).
 //
 // READS:
-//   .env.local                                      SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY
-//   ./out/shipwreck_seed_beads.normalized.json      Shipwreck catalog (5,777 products)
+//   .env.local                                     SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY
+//   ./out/shipwreck_seed_beads.normalized.json     5,777-product catalog from weekly sync
 //
 // WRITES (idempotent — safe to re-run):
-//   bead_palettes        1 row   (Preciosa Opaque 11/0)
-//   bead_colors          26 rows (the curated set, ported 1:1 from src/data/beadColors.js)
-//   supplier_inventory   N rows  (one per matched Shipwreck SKU)
+//   supplier_inventory                              N rows per color (pack-size variants)
+//   bead_colors.cheapest_price_usd / .available     denormalized summary, updated per color
 //
-// SAFETY: idempotency is by slug for palettes/colors and (supplier, supplier_sku) for inventory.
-// Re-running will UPSERT, never duplicate.
+// Strategy:
+//   1. Fetch all bead_colors (text id is the slug, sku is the curated Shipwreck SKU).
+//   2. For each color, derive a "SKU family" by stripping the trailing R suffix
+//      (R = small retail pack, e.g. 11SB164R). The family is `11SB164`, which
+//      Shipwreck packages in multiple sizes: 11SB164 (6HK), 11SB164R (1HK), etc.
+//   3. Find all Shipwreck products whose shipwreck_sku starts with the family.
+//   4. Upsert each as a supplier_inventory row.
+//   5. Update bead_colors.cheapest_price_usd + available from the matched SKUs.
 
 const fs = require("fs");
 const path = require("path");
 
-// ── Load .env.local manually — no dotenv dep ───────────────────────────────
+// ── Load .env.local ────────────────────────────────────────────────────────
 const envPath = path.join(__dirname, ".env.local");
 if (!fs.existsSync(envPath)) {
   console.error(`✗ Missing ${envPath}`);
-  console.error(`  Create it with these two lines (get values from Supabase Dashboard → Settings → API):`);
+  console.error(`  Copy .env.local.example → .env.local and fill in:`);
   console.error(`    SUPABASE_URL=https://xxxxx.supabase.co`);
   console.error(`    SUPABASE_SERVICE_ROLE_KEY=eyJhbGc...   (the service_role key, NOT anon)`);
   process.exit(1);
@@ -29,7 +35,6 @@ for (const line of fs.readFileSync(envPath, "utf8").split(/\r?\n/)) {
   const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.*)$/);
   if (m) process.env[m[1]] = m[2].trim();
 }
-
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SERVICE_KEY  = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!SUPABASE_URL || !SERVICE_KEY) {
@@ -37,106 +42,9 @@ if (!SUPABASE_URL || !SERVICE_KEY) {
   process.exit(1);
 }
 
-// ── Tier mapping: existing tiers:[...] arrays → new min_tier enum ──────────
-// 'guest' is implicit when array contains 'guest'; 'studio' for studio+pro; 'pro' for pro-only.
-function tiersToMinTier(tiersArray) {
-  if (tiersArray.includes("guest"))  return "guest";
-  if (tiersArray.includes("hobby"))  return "hobby";
-  if (tiersArray.includes("studio")) return "studio";
-  return "pro";
-}
-
-// ── Curated palette: ported 1:1 from src/data/beadColors.js ────────────────
-// Embedded here (instead of importing the JS) so this script is self-contained.
-const PRECIOSA_OPAQUE_11_0 = {
-  palette: {
-    slug:           "preciosa-opaque-11-0",
-    brand:          "Preciosa",
-    brand_line:     "Opaque",
-    size_label:     "11/0",
-    bead_width_mm:  1.32,    // from BeadTool4 catalog: Preciosa Rocailles (Size 11)
-    bead_height_mm: 2.17,
-    display_name:   "Preciosa Opaque 11/0",
-    description:    "Traditional Czech opaque seed beads in size 11/0 — the customizer's default palette.",
-    display_order:  1,
-  },
-  colors: [
-    // Guest+Hobby+Studio+Pro (6 base)
-    { slug:"op-white",         name:"White",                    hex:"#FFFFFF", tiers:["guest","hobby","studio","pro"] },
-    { slug:"op-black",         name:"Black",                    hex:"#1A1714", tiers:["guest","hobby","studio","pro"] },
-    { slug:"op-med-red",       name:"Medium Red",               hex:"#C8232A", tiers:["guest","hobby","studio","pro"] },
-    { slug:"op-orange",        name:"Orange",                   hex:"#E8641E", tiers:["guest","hobby","studio","pro"] },
-    { slug:"op-yellow",        name:"Yellow",                   hex:"#F5C800", tiers:["guest","hobby","studio","pro"] },
-    { slug:"op-royal-blue",    name:"Royal Blue",               hex:"#1030A0", tiers:["guest","hobby","studio","pro"] },
-    // Studio+Pro (12 more)
-    { slug:"op-bone",          name:"Bone Effect",              hex:"#EDE0C8", tiers:["studio","pro"] },
-    { slug:"op-tan",           name:"Tan Effect",               hex:"#C8A87A", tiers:["studio","pro"] },
-    { slug:"op-lt-brown",      name:"Light Brown",              hex:"#A0724A", tiers:["studio","pro"] },
-    { slug:"op-dk-red",        name:"Dark Red",                 hex:"#8B0F12", tiers:["studio","pro"] },
-    { slug:"op-dk-pink",       name:"Dark Pink",                hex:"#D44070", tiers:["studio","pro"] },
-    { slug:"op-tq-green",      name:"Turquoise Green",          hex:"#00A882", tiers:["studio","pro"] },
-    { slug:"op-pale-blue",     name:"Pale Blue",                hex:"#A8C8E8", tiers:["studio","pro"] },
-    { slug:"op-lt-tq-blue",    name:"Light Turquoise Blue",     hex:"#40C0C8", tiers:["studio","pro"] },
-    { slug:"op-tq-blue",       name:"Turquoise Blue",           hex:"#00A0B4", tiers:["studio","pro"] },
-    { slug:"op-teal-blue",     name:"Teal Blue",                hex:"#007888", tiers:["studio","pro"] },
-    { slug:"op-med-blue",      name:"Medium Blue",              hex:"#2858C0", tiers:["studio","pro"] },
-    { slug:"op-navy-blue",     name:"Navy Blue",                hex:"#0A1858", tiers:["studio","pro"] },
-    // Pro only (8 more)
-    { slug:"op-lt-red",        name:"Light Red",                hex:"#E8514A", tiers:["pro"] },
-    { slug:"op-brick-red",     name:"Brick Red Mahogany",       hex:"#7A2820", tiers:["pro"] },
-    { slug:"op-gold",          name:"Gold",                     hex:"#C89A00", tiers:["pro"] },
-    { slug:"op-lime",          name:"Lime Green",               hex:"#78C814", tiers:["pro"] },
-    { slug:"op-lt-green",      name:"Light Green",              hex:"#4AA040", tiers:["pro"] },
-    { slug:"op-dk-green",      name:"Dark Green",               hex:"#1A5C28", tiers:["pro"] },
-    { slug:"op-bright-green",  name:"Bright Green",             hex:"#00C832", tiers:["pro"] },
-    { slug:"op-pale-tq-blue",  name:"Pale Turquoise Blue",      hex:"#8ED8E0", tiers:["pro"] },
-  ],
-};
-
-// ── Match a curated color name against Shipwreck Preciosa product titles ───
-// Shipwreck titles look like: "11SB109: CZ Seed Bead Op Black 11/0 6HK"
-// Strategy: normalize both sides, look for the color name as a phrase after "Op ".
-function normalizeForMatch(s) {
-  return s
-    .toLowerCase()
-    .replace(/\bop(aque)?\b/g, "")
-    .replace(/\bcz\b/g, "")
-    .replace(/\bseed bead(s)?\b/g, "")
-    .replace(/\d{1,2}\/0\b/g, "")
-    .replace(/\d+(\.\d+)?\s*(hk|hank|gm|gram|str|strand)s?\b/gi, "")
-    .replace(/[\-—,:.()]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function matchSkus(colorName, preciosaProducts) {
-  const normColor = normalizeForMatch(colorName);
-  const matches = [];
-  for (const p of preciosaProducts) {
-    const normTitle = normalizeForMatch(p.title || "");
-    // Color name must appear as a substring (whole-word boundaries via padding)
-    const padded = " " + normTitle + " ";
-    if (padded.includes(" " + normColor + " ")) {
-      matches.push(p);
-    }
-  }
-  return matches;
-}
-
-function packInfoFromTitle(title) {
-  if (!title) return { unit: null, size: null };
-  const hk = title.match(/(\d+(?:\.\d+)?)\s*(?:HK|Hanks?)\b/i);
-  if (hk) return { unit: "hank", size: parseFloat(hk[1]) };
-  const gm = title.match(/(\d+(?:\.\d+)?)\s*(?:GM|Gm|g|Grams?|gram)\b/);
-  if (gm) return { unit: "gram", size: parseFloat(gm[1]) };
-  const str = title.match(/(\d+(?:\.\d+)?)\s*(?:STR|Strands?)\b/i);
-  if (str) return { unit: "strand", size: parseFloat(str[1]) };
-  return { unit: null, size: null };
-}
-
-// ── Tiny REST wrapper — no @supabase/supabase-js dependency ────────────────
-async function pgrest(method, table, body, query = "") {
-  const url = `${SUPABASE_URL}/rest/v1/${table}${query}`;
+// ── PostgREST helper ───────────────────────────────────────────────────────
+async function pgrest(method, path, body, query = "") {
+  const url = `${SUPABASE_URL}/rest/v1/${path}${query}`;
   const headers = {
     "apikey":         SERVICE_KEY,
     "Authorization":  `Bearer ${SERVICE_KEY}`,
@@ -149,52 +57,78 @@ async function pgrest(method, table, body, query = "") {
   return text ? JSON.parse(text) : null;
 }
 
+// ── Derive a SKU family from a curated SKU ─────────────────────────────────
+// 11SB164R    → 11SB164  (R = retail single-hank pack)
+// 11SB164     → 11SB164
+// 11SB100-STR → 11SB100  (suffix variants like -STR, -ITR, -SR, -MER, -PCR)
+function skuFamily(sku) {
+  if (!sku) return null;
+  return sku
+    .toUpperCase()
+    .replace(/-?(STR|ITR|SR|MER|PCR|LCR|PC|LC|HCR|HC|SCR|SC|MX|MX\d+)$/, "")
+    .replace(/R$/, "");
+}
+
+function packInfoFromTitle(title) {
+  if (!title) return { unit: null, size: null };
+  const hk  = title.match(/(\d+(?:\.\d+)?)\s*(?:HK|Hanks?)\b/i);
+  if (hk)  return { unit: "hank",   size: parseFloat(hk[1])  };
+  const gm  = title.match(/(\d+(?:\.\d+)?)\s*(?:GM|Gm|g|Grams?|gram)\b/);
+  if (gm)  return { unit: "gram",   size: parseFloat(gm[1])  };
+  const str = title.match(/(\d+(?:\.\d+)?)\s*(?:STR|Strands?)\b/i);
+  if (str) return { unit: "strand", size: parseFloat(str[1]) };
+  return { unit: null, size: null };
+}
+
 (async () => {
   console.log(`Importing into ${SUPABASE_URL}\n`);
 
-  // ── 1. Upsert palette ────────────────────────────────────────────────────
-  console.log("→ Upserting bead_palettes …");
-  const [palette] = await pgrest("POST", "bead_palettes", [PRECIOSA_OPAQUE_11_0.palette],
-    "?on_conflict=slug");
-  console.log(`  ✓ palette id ${palette.id}`);
+  // ── 1. Pull existing bead_colors ────────────────────────────────────────
+  console.log("→ Loading bead_colors from Supabase …");
+  const colors = await pgrest("GET", "bead_colors", null, "?select=id,name,sku,bead_type,bead_size,brand");
+  console.log(`  ${colors.length} colors found`);
 
-  // ── 2. Upsert colors ─────────────────────────────────────────────────────
-  console.log("→ Upserting bead_colors …");
-  const colorRows = PRECIOSA_OPAQUE_11_0.colors.map((c, i) => ({
-    palette_id:    palette.id,
-    slug:          c.slug,
-    name:          c.name,
-    hex:           c.hex,
-    min_tier:      tiersToMinTier(c.tiers),
-    display_order: i,
-  }));
-  const insertedColors = await pgrest("POST", "bead_colors", colorRows, "?on_conflict=palette_id,slug");
-  console.log(`  ✓ ${insertedColors.length} colors upserted`);
-
-  // ── 3. Match against Shipwreck and populate supplier_inventory ───────────
+  // ── 2. Load Shipwreck snapshot ──────────────────────────────────────────
   console.log("→ Loading Shipwreck normalized snapshot …");
   const shipwreckPath = path.join(__dirname, "out", "shipwreck_seed_beads.normalized.json");
   const all = JSON.parse(fs.readFileSync(shipwreckPath, "utf8"));
-  const preciosa11 = all.filter(r =>
-    r.brand_family === "Preciosa" &&
-    r.size_label === "11/0" &&
-    /\bop(aque)?\b/i.test(r.title || "")   // Opaque finish only
-  );
-  console.log(`  ${preciosa11.length} candidate Preciosa Opaque 11/0 products`);
+  console.log(`  ${all.length} Shipwreck products`);
 
-  console.log("→ Matching curated colors to SKUs …");
-  const slugById = Object.fromEntries(insertedColors.map(c => [c.slug, c.id]));
+  // Index Shipwreck products by SKU prefix for fast family lookup.
+  const skuIndex = new Map();
+  for (const p of all) {
+    const sku = (p.shipwreck_sku || "").toUpperCase();
+    if (!sku) continue;
+    skuIndex.set(sku, p);
+  }
+
+  // ── 3. Match each color to its SKU family ───────────────────────────────
+  console.log("→ Matching colors to Shipwreck SKU families …");
   const inventoryRows = [];
-  const report = [];
-  for (const c of PRECIOSA_OPAQUE_11_0.colors) {
-    const matches = matchSkus(c.name, preciosa11);
-    report.push({ color: c.name, slug: c.slug, sku_count: matches.length, skus: matches.map(m => m.shipwreck_sku) });
+  const colorSummary  = []; // for updating bead_colors with cheapest_price_usd + available
+
+  for (const c of colors) {
+    const family = skuFamily(c.sku);
+    if (!family) {
+      colorSummary.push({ id: c.id, name: c.name, sku: c.sku, family: null, matches: 0 });
+      continue;
+    }
+    // Find all Shipwreck SKUs that start with the family (catches base + R + suffixed variants).
+    const matches = [];
+    for (const [sku, p] of skuIndex) {
+      // Match: SKU is exactly the family OR family + ending suffix (R, -STR, -ITR, etc.)
+      if (sku === family || sku.startsWith(family + "R") || sku.startsWith(family + "-")) {
+        matches.push(p);
+      }
+    }
+    colorSummary.push({ id: c.id, name: c.name, sku: c.sku, family, matches: matches.length });
+
     for (const m of matches) {
       const pack = packInfoFromTitle(m.title);
       inventoryRows.push({
-        color_id:             slugById[c.slug],
+        bead_color_id:        c.id,
         supplier:             "shipwreck",
-        supplier_sku:         m.shipwreck_sku || m.handle,
+        supplier_sku:         m.shipwreck_sku,
         shopify_product_id:   m.shopify_product_id,
         product_url:          m.product_url,
         product_title:        m.title,
@@ -208,8 +142,8 @@ async function pgrest(method, table, body, query = "") {
     }
   }
 
+  // ── 4. Upsert supplier_inventory in batches ─────────────────────────────
   console.log(`→ Upserting ${inventoryRows.length} supplier_inventory rows …`);
-  // Chunk into 500-row batches to keep PostgREST happy.
   const CHUNK = 500;
   for (let i = 0; i < inventoryRows.length; i += CHUNK) {
     const chunk = inventoryRows.slice(i, i + CHUNK);
@@ -218,28 +152,40 @@ async function pgrest(method, table, body, query = "") {
   }
   console.log(`\n  ✓ inventory upsert complete`);
 
-  // ── 4. Matching report ──────────────────────────────────────────────────
-  console.log("\n=== MATCHING REPORT ===");
-  const unmatched = report.filter(r => r.sku_count === 0);
-  const matched   = report.filter(r => r.sku_count >  0);
-  console.log(`Matched:   ${matched.length}/26 colors → ${inventoryRows.length} SKUs`);
-  console.log(`Unmatched: ${unmatched.length}/26 colors`);
-  console.log("");
-  console.log("Per-color SKU counts:");
-  for (const r of report.sort((a,b) => b.sku_count - a.sku_count)) {
-    const flag = r.sku_count === 0 ? " ⚠ NO MATCH — needs manual SKU assignment"
-               : r.sku_count >  6 ? " ⚠ many matches — likely some false positives"
-               : "";
-    console.log(`  ${String(r.sku_count).padStart(3)} ${r.color.padEnd(28)} (${r.slug})${flag}`);
+  // ── 5. Update bead_colors with denormalized summary (cheapest_price + available) ─
+  console.log("→ Updating bead_colors summary fields …");
+  for (const c of colors) {
+    const matched = inventoryRows.filter(r => r.bead_color_id === c.id);
+    const inStock = matched.filter(r => r.available);
+    const cheapest = inStock.length
+      ? Math.min(...inStock.map(r => r.price_usd).filter(p => p != null))
+      : null;
+    await pgrest("PATCH", "bead_colors", {
+      cheapest_price_usd: isFinite(cheapest) ? cheapest : null,
+      available:          inStock.length > 0,
+    }, `?id=eq.${encodeURIComponent(c.id)}`);
   }
-  if (unmatched.length) {
-    console.log("\nUnmatched colors — Shipwreck doesn't carry an obvious match. Options:");
-    console.log("  • Manually find the SKU at shipwreckbeads.com and INSERT into supplier_inventory");
-    console.log("  • Or accept that color isn't currently sourceable from Shipwreck (it's still in bead_colors)");
+  console.log(`  ✓ ${colors.length} bead_colors summary fields refreshed`);
+
+  // ── 6. Matching report ─────────────────────────────────────────────────
+  console.log("\n=== MATCHING REPORT ===");
+  const sorted = [...colorSummary].sort((a, b) => b.matches - a.matches);
+  const unmatched = sorted.filter(s => s.matches === 0);
+  console.log(`Matched:   ${sorted.filter(s => s.matches > 0).length}/${colors.length} colors → ${inventoryRows.length} SKU rows`);
+  console.log(`Unmatched: ${unmatched.length}/${colors.length} colors\n`);
+  console.log("Per-color SKU counts:");
+  for (const s of sorted) {
+    const flag = s.matches === 0
+      ? (s.family ? `  ⚠ family ${s.family} not in Shipwreck snapshot` : `  ⚠ no sku on bead_colors row`)
+      : "";
+    console.log(`  ${String(s.matches).padStart(3)}  ${s.name.padEnd(28)} (${s.id.padEnd(20)}) sku=${s.sku.padEnd(12)}${flag}`);
   }
 
-  // Write the report to a JSON file for follow-up review.
   fs.writeFileSync(path.join(__dirname, "out", "import_match_report.json"),
-    JSON.stringify({ palette_id: palette.id, generated_at: new Date().toISOString(), report }, null, 2));
+    JSON.stringify({ generated_at: new Date().toISOString(), report: colorSummary }, null, 2));
   console.log("\nWrote out/import_match_report.json for review.\n");
+
+  console.log("Verify in Supabase SQL Editor:");
+  console.log("  select * from bead_colors_with_stock order by name limit 5;");
+  console.log("  select bead_color_id, count(*) from supplier_inventory group by 1 order by 2 desc limit 10;");
 })();
