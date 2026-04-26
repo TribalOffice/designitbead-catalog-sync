@@ -1,0 +1,2081 @@
+{
+  "source": {
+    "file": "C:/Program Files (x86)/BeadTool4/BeadTool.db",
+    "extracted_at": "2026-04-26T15:04:09.441Z",
+    "note": "Extracted from BeadTool4 v4 SQLite catalog. The actual color data per palette is in the encrypted `data` BLOB (btf64e + base64 AES-grade ciphertext) and is NOT included here. See README.md for legitimate sources for bead color data."
+  },
+  "counts": {
+    "palettes": 17,
+    "patterns": 19,
+    "layouts": 10,
+    "stamps": 22,
+    "folders": 13,
+    "options": 0,
+    "tags": 7,
+    "tips": 20
+  },
+  "palettes": [
+    {
+      "id": 81,
+      "type": "palette",
+      "name": "Pony Beads (9mm)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 12,
+      "encrypted_data_bytes": 3101,
+      "meta": {
+        "uuid": "",
+        "revision": "9",
+        "created": "9/11/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 6,
+          "height": 9
+        },
+        "name": "Pony Beads (9mm)",
+        "description": "Because of their size, these beads are easy to work with and are useful for large banners and fun for kids projects."
+      }
+    },
+    {
+      "id": 82,
+      "type": "palette",
+      "name": "Toho Aiko",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 13,
+      "encrypted_data_bytes": 33497,
+      "meta": {
+        "uuid": "",
+        "revision": "31",
+        "created": "7/9/10",
+        "modified": "5/22/14",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 1.3,
+          "height": 1.7
+        },
+        "name": "Toho Aiko",
+        "description": "Aiko Beads are top-quality beads manufactured with state-of-the art machinery. Since they are very consistent in shape and size and the resulting beaded piece has a smooth, silken finish."
+      }
+    },
+    {
+      "id": 83,
+      "type": "palette",
+      "name": "Toho Treasures",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 14,
+      "encrypted_data_bytes": 11911,
+      "meta": {
+        "uuid": "",
+        "revision": "11",
+        "created": "9/11/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 1.09,
+          "height": 1.47
+        },
+        "name": "Toho Treasures",
+        "description": "These beads are not as precise as the Toho Aiko but much more uniform than any other Rocailles."
+      }
+    },
+    {
+      "id": 112,
+      "type": "palette",
+      "name": "Toho Rounds",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 15,
+      "encrypted_data_bytes": 23217,
+      "meta": {
+        "uuid": "",
+        "revision": "29",
+        "created": "4/19/11",
+        "modified": "5/22/14",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 1.49,
+          "height": 2.18
+        },
+        "name": "Toho Rounds",
+        "description": "This line of beads from Toho are similar to Delica Rocailles. They are more rounded and not as uniform in size or shape as precision cylinder beads."
+      }
+    },
+    {
+      "id": 115,
+      "type": "palette",
+      "name": "Preciosa Rocialles (Size 11)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 11,
+      "encrypted_data_bytes": 19905,
+      "meta": {
+        "uuid": "9d227833-ce18-4696-9152-4494bd3342ca",
+        "revision": "33",
+        "created": "10/29/13",
+        "modified": "5/22/14",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 1.32,
+          "height": 2.17
+        },
+        "name": "Preciosa Rocialles (Size 11)",
+        "description": "These traditional seed beads from the Czech Republic are similar in shape to Miyuki Rocialles."
+      }
+    },
+    {
+      "id": 129,
+      "type": "palette",
+      "name": "Generic Colors",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 16,
+      "encrypted_data_bytes": 5679,
+      "meta": {
+        "uuid": "a4b068a5-0da9-443a-9dd7-f37594d088fc",
+        "revision": "10",
+        "created": "11/12/13",
+        "modified": "5/22/14",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 2.2,
+          "height": 2.4
+        },
+        "name": "Generic Colors",
+        "description": "These colors do not represent any brand of bead and are used for matching up closest colors while stitching your design together."
+      }
+    },
+    {
+      "id": 189,
+      "type": "palette",
+      "name": "Miyuki Delicas (Size 10)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 2,
+      "encrypted_data_bytes": 12859,
+      "meta": {
+        "uuid": "ec0c6d06-0f55-4ca0-9912-fc21f2f4721e",
+        "revision": "24",
+        "created": "11/11/2013",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 1.7,
+          "height": 2
+        },
+        "name": "Miyuki Delicas (Size 10)",
+        "description": "Size 10 Delicas have the same Miyuki precision but are smaller than 8/0 and larger than 11/0."
+      }
+    },
+    {
+      "id": 190,
+      "type": "palette",
+      "name": "Miyuki Delicas (Size 11)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 0,
+      "encrypted_data_bytes": 53957,
+      "meta": {
+        "uuid": "628162d4-31b1-4d76-8d81-c4b418eaefde",
+        "revision": "25",
+        "created": "7/16/2014",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 1.35,
+          "height": 1.75
+        },
+        "name": "Miyuki Delicas (Size 11)",
+        "description": "Arguably the most popular brand and size bead for most beaders. They cost more than rocailles but are also more uniform in size and shape."
+      }
+    },
+    {
+      "id": 191,
+      "type": "palette",
+      "name": "Miyuki Delicas (Size 15)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 1,
+      "encrypted_data_bytes": 14461,
+      "meta": {
+        "uuid": "5cd0609e-d108-4eec-9e5f-7ab345efbb29",
+        "revision": "31",
+        "created": "11/11/2013",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 1.09,
+          "height": 1.63
+        },
+        "name": "Miyuki Delicas (Size 15)",
+        "description": "These beads are significantly smaller than 11/0 Delicas and have fewer colors to choose from."
+      }
+    },
+    {
+      "id": 192,
+      "type": "palette",
+      "name": "Miyuki Delicas (Size 8)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 3,
+      "encrypted_data_bytes": 8729,
+      "meta": {
+        "uuid": "04a71ac5-29a3-4130-abac-a7fd418d0cf6",
+        "revision": "23",
+        "created": "11/11/2013",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 2.65,
+          "height": 3
+        },
+        "name": "Miyuki Delicas (Size 8)",
+        "description": "These are currently the largest Delicas Miyuki makes."
+      }
+    },
+    {
+      "id": 193,
+      "type": "palette",
+      "name": "Miyuki Round Rocailles (9mm)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 4,
+      "encrypted_data_bytes": 26485,
+      "meta": {
+        "uuid": "73861c15-6c71-49c1-8073-73e0116f45dd",
+        "revision": "12",
+        "created": "4/4/2018",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 5.54,
+          "height": 8.8
+        },
+        "name": "Miyuki Round Rocailles (9mm)",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 194,
+      "type": "palette",
+      "name": "Miyuki Round Rocailles (Size 10)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 5,
+      "encrypted_data_bytes": 27011,
+      "meta": {
+        "uuid": "9c3a77ac-ca59-49af-a3c6-eb6fbae9b519",
+        "revision": "17",
+        "created": "6/18/2016",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 1.6,
+          "height": 2.38
+        },
+        "name": "Miyuki Round Rocailles (Size 10)",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 195,
+      "type": "palette",
+      "name": "Miyuki Round Rocailles (Size 11)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 6,
+      "encrypted_data_bytes": 39195,
+      "meta": {
+        "uuid": "a1a36447-fb02-4fa8-9366-0035ed5c808c",
+        "revision": "18",
+        "created": "3/15/2015",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 1.45,
+          "height": 2.15
+        },
+        "name": "Miyuki Round Rocailles (Size 11)",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 196,
+      "type": "palette",
+      "name": "Miyuki Round Rocailles (Size 15)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 7,
+      "encrypted_data_bytes": 44137,
+      "meta": {
+        "uuid": "1674347a-f3b7-4c6d-9267-0a2f0992dbb8",
+        "revision": "18",
+        "created": "3/15/2015",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 1.09,
+          "height": 1.63
+        },
+        "name": "Miyuki Round Rocailles (Size 15)",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 197,
+      "type": "palette",
+      "name": "Miyuki Round Rocailles (Size 5)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 8,
+      "encrypted_data_bytes": 28259,
+      "meta": {
+        "uuid": "ffc1a87f-c46b-4d15-8c14-a2b86ed7256e",
+        "revision": "19",
+        "created": "3/15/2015",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 3.45,
+          "height": 5
+        },
+        "name": "Miyuki Round Rocailles (Size 5)",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 198,
+      "type": "palette",
+      "name": "Miyuki Round Rocailles (Size 6)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 9,
+      "encrypted_data_bytes": 39569,
+      "meta": {
+        "uuid": "d8cb680a-edb2-4c1b-9fd2-e071012ed944",
+        "revision": "17",
+        "created": "3/15/2015",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 3,
+          "height": 4.2
+        },
+        "name": "Miyuki Round Rocailles (Size 6)",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 199,
+      "type": "palette",
+      "name": "Miyuki Round Rocailles (Size 8)",
+      "folder_path": "Palettes / Stock",
+      "parent_id": 8,
+      "place": 10,
+      "encrypted_data_bytes": 39235,
+      "meta": {
+        "uuid": "2e1215ca-63da-4e6e-a098-aab59612d600",
+        "revision": "17",
+        "created": "3/15/2015",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 2,
+          "height": 3
+        },
+        "name": "Miyuki Round Rocailles (Size 8)",
+        "description": "[none]"
+      }
+    }
+  ],
+  "patterns": [
+    {
+      "id": 13,
+      "type": "pattern",
+      "name": "10th Mountain Division",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 6,
+      "encrypted_data_bytes": 4025,
+      "meta": {
+        "uuid": null,
+        "revision": "18",
+        "created": "9/11/2009",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 49,
+          "height": 78.2
+        },
+        "name": "10th Mountain Division",
+        "description": "10th Mountain Division - 2nd Batallion / 87th Infantry Regiment. Fort Drum, New York."
+      }
+    },
+    {
+      "id": 14,
+      "type": "pattern",
+      "name": "Aces",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 11,
+      "encrypted_data_bytes": 1549,
+      "meta": {
+        "uuid": "",
+        "revision": "6",
+        "created": "9/11/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 95.85,
+          "height": 33.25
+        },
+        "name": "Aces",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 16,
+      "type": "pattern",
+      "name": "Bee On Sunflower",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 12,
+      "encrypted_data_bytes": 1857,
+      "meta": {
+        "uuid": null,
+        "revision": "4",
+        "created": "9/11/2009",
+        "modified": "4/6/2010",
+        "author": {
+          "name": "Arlene",
+          "company": null,
+          "email": null,
+          "website": null
+        },
+        "bead_size_mm": {
+          "width": 30.8,
+          "height": 56.09
+        },
+        "name": "Bee On Sunflower",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 20,
+      "type": "pattern",
+      "name": "Butterfly",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 13,
+      "encrypted_data_bytes": 2687,
+      "meta": {
+        "uuid": "",
+        "revision": "9",
+        "created": "9/11/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 33.75,
+          "height": 98
+        },
+        "name": "Butterfly",
+        "description": "These butterfly halves are meant to serve as a template. Change the colors to your liking and then copy, mirror and paste to create a complete butterfly."
+      }
+    },
+    {
+      "id": 22,
+      "type": "pattern",
+      "name": "French Flag",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 16,
+      "encrypted_data_bytes": 1045,
+      "meta": {
+        "uuid": null,
+        "revision": "6",
+        "created": "9/11/2009",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 78.3,
+          "height": 45.5
+        },
+        "name": "French Flag",
+        "description": "The flag of France"
+      }
+    },
+    {
+      "id": 23,
+      "type": "pattern",
+      "name": "USA Flag",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 14,
+      "encrypted_data_bytes": 1093,
+      "meta": {
+        "uuid": "",
+        "revision": "7",
+        "created": "9/11/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 78.3,
+          "height": 45.5
+        },
+        "name": "USA Flag",
+        "description": "The flag of the United States of America."
+      }
+    },
+    {
+      "id": 24,
+      "type": "pattern",
+      "name": "International Karate Plus",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 17,
+      "encrypted_data_bytes": 4079,
+      "meta": {
+        "uuid": null,
+        "revision": "7",
+        "created": "9/11/2009",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 135.8,
+          "height": 51
+        },
+        "name": "International Karate Plus",
+        "description": "A screenshot from a very old game created for the Commodore 64. One of my favorites!"
+      }
+    },
+    {
+      "id": 53,
+      "type": "pattern",
+      "name": "Apple Tree 4",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 18,
+      "encrypted_data_bytes": 1557,
+      "meta": {
+        "uuid": "",
+        "revision": "10",
+        "created": "9/11/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Unknown",
+          "company": null,
+          "email": null,
+          "website": null
+        },
+        "bead_size_mm": {
+          "width": 36.4,
+          "height": 15.8
+        },
+        "name": "Apple Tree 4",
+        "description": "This Apple Tree pattern has been with us since BeadTool 2. This version has been updated with a better color selection than the previous ones. If you are the original author, please contact me!"
+      }
+    },
+    {
+      "id": 57,
+      "type": "pattern",
+      "name": "Horse In Cloud",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 7,
+      "encrypted_data_bytes": 1451,
+      "meta": {
+        "uuid": null,
+        "revision": "6",
+        "created": "9/11/2009",
+        "modified": "4/6/2010",
+        "author": {
+          "name": "Arlene",
+          "company": null,
+          "email": null,
+          "website": null
+        },
+        "bead_size_mm": {
+          "width": 62.125,
+          "height": 45.9
+        },
+        "name": "Horse In Cloud",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 58,
+      "type": "pattern",
+      "name": "Ladybug Bookmark",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 8,
+      "encrypted_data_bytes": 1611,
+      "meta": {
+        "uuid": null,
+        "revision": "7",
+        "created": "9/11/2009",
+        "modified": "4/6/2010",
+        "author": {
+          "name": "Arlene",
+          "company": null,
+          "email": null,
+          "website": null
+        },
+        "bead_size_mm": {
+          "width": 16.2,
+          "height": 140.875
+        },
+        "name": "Ladybug Bookmark",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 59,
+      "type": "pattern",
+      "name": "Ladybug Purse",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 9,
+      "encrypted_data_bytes": 1965,
+      "meta": {
+        "uuid": null,
+        "revision": "8",
+        "created": "9/11/2009",
+        "modified": "4/6/2010",
+        "author": {
+          "name": "Arlene",
+          "company": null,
+          "email": null,
+          "website": null
+        },
+        "bead_size_mm": {
+          "width": 84.875,
+          "height": 43.2
+        },
+        "name": "Ladybug Purse",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 60,
+      "type": "pattern",
+      "name": "Pig",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 10,
+      "encrypted_data_bytes": 1681,
+      "meta": {
+        "uuid": null,
+        "revision": "8",
+        "created": "9/11/2009",
+        "modified": "4/6/2010",
+        "author": {
+          "name": "Arlene",
+          "company": null,
+          "email": null,
+          "website": null
+        },
+        "bead_size_mm": {
+          "width": 82.35,
+          "height": 53.375
+        },
+        "name": "Pig",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 73,
+      "type": "pattern",
+      "name": "Canadian Flag",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 15,
+      "encrypted_data_bytes": 1669,
+      "meta": {
+        "uuid": null,
+        "revision": "4",
+        "created": "3/24/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 78.3,
+          "height": 45.5
+        },
+        "name": "Canadian Flag",
+        "description": "The flag of Canada"
+      }
+    },
+    {
+      "id": 133,
+      "type": "pattern",
+      "name": "Hot Air Balloons",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 1,
+      "encrypted_data_bytes": 2223,
+      "meta": {
+        "uuid": "",
+        "revision": "28",
+        "created": "12/8/2013",
+        "modified": "10/10/2017",
+        "author": {
+          "name": "Chery Savage",
+          "company": null,
+          "email": null,
+          "website": "www.cheryscountrytimecrafts.aradium.com"
+        },
+        "bead_size_mm": {
+          "width": 234,
+          "height": 391.5
+        },
+        "name": "Hot Air Balloons",
+        "description": "This beautiful scene by Chery Savage is licensed under the Creative Commons BY-NC-SA. It may not be used for any commercial purpose but you may distribute and alter it as long as the license and original author remains in tact."
+      }
+    },
+    {
+      "id": 151,
+      "type": "pattern",
+      "name": "Hot Air Balloons (Delica)",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 2,
+      "encrypted_data_bytes": 2485,
+      "meta": {
+        "uuid": "",
+        "revision": "21",
+        "created": "12/8/2013",
+        "modified": "10/12/2017",
+        "author": {
+          "name": null,
+          "company": null,
+          "email": null,
+          "website": null
+        },
+        "bead_size_mm": {
+          "width": 52.65,
+          "height": 76.125
+        },
+        "name": "Hot Air Balloons (Delica)",
+        "description": "This beautiful scene by Chery Savage is licensed under the Creative Commons BY-NC-SA. It may not be used for any commercial purpose but you may distribute and alter it as long as the license and original author remains in tact."
+      }
+    },
+    {
+      "id": 186,
+      "type": "pattern",
+      "name": "Panda",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 3,
+      "encrypted_data_bytes": 3573,
+      "meta": {
+        "uuid": "",
+        "revision": "2",
+        "created": "7/22/18",
+        "modified": "7/22/18",
+        "author": {
+          "name": null,
+          "company": null,
+          "email": null,
+          "website": null
+        },
+        "bead_size_mm": {
+          "width": 77.292,
+          "height": 77
+        },
+        "name": "Panda",
+        "description": "Just for fun from a public domain clip art."
+      }
+    },
+    {
+      "id": 187,
+      "type": "pattern",
+      "name": "Lion",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 4,
+      "encrypted_data_bytes": 3811,
+      "meta": {
+        "uuid": "",
+        "revision": "1",
+        "created": "7/22/18",
+        "modified": "7/22/18",
+        "author": {
+          "name": null,
+          "company": null,
+          "email": null,
+          "website": null
+        },
+        "bead_size_mm": {
+          "width": 77.292,
+          "height": 84
+        },
+        "name": "Lion",
+        "description": "Just for fun. From a public domain clip art."
+      }
+    },
+    {
+      "id": 188,
+      "type": "pattern",
+      "name": "Horse",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 5,
+      "encrypted_data_bytes": 2905,
+      "meta": {
+        "uuid": "",
+        "revision": "1",
+        "created": "7/23/18",
+        "modified": "7/23/18",
+        "author": {
+          "name": null,
+          "company": null,
+          "email": null,
+          "website": null
+        },
+        "bead_size_mm": {
+          "width": 96.276,
+          "height": 92.75
+        },
+        "name": "Horse",
+        "description": "Just for fun. A horse from a public domain image."
+      }
+    },
+    {
+      "id": 200,
+      "type": "pattern",
+      "name": "Slice of Heaven",
+      "folder_path": "Patterns / Free",
+      "parent_id": 2,
+      "place": 0,
+      "encrypted_data_bytes": 2987,
+      "meta": {
+        "uuid": "",
+        "revision": "3",
+        "created": "9/6/2019",
+        "modified": "9/6/2019",
+        "author": {
+          "name": null,
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 108.48,
+          "height": 101.5
+        },
+        "name": "Slice of Heaven",
+        "description": "Original work by Fauzan Sykuri (fauzan291)"
+      }
+    }
+  ],
+  "layouts": [
+    {
+      "id": 54,
+      "type": "layout",
+      "name": "Just the Bead Chart",
+      "folder_path": "Layouts / Stock",
+      "parent_id": 11,
+      "place": 0,
+      "encrypted_data_bytes": 799,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "9/17/2009",
+        "modified": "10/24/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 216,
+          "height": 279
+        },
+        "name": "Just the Bead Chart",
+        "description": "This layout will only print the name of your pattern and the Bead Chart on a single page."
+      }
+    },
+    {
+      "id": 55,
+      "type": "layout",
+      "name": "Bead Chart and Legend",
+      "folder_path": "Layouts / Stock",
+      "parent_id": 11,
+      "place": 1,
+      "encrypted_data_bytes": 921,
+      "meta": {
+        "uuid": "",
+        "revision": "5",
+        "created": "9/17/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Fired Up Software",
+          "company": null,
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 216,
+          "height": 279
+        },
+        "name": "Bead Chart and Legend",
+        "description": "This layout will only print the Bead Chart and the accompanying Bead Legend on a single page."
+      }
+    },
+    {
+      "id": 56,
+      "type": "layout",
+      "name": "Full Printout",
+      "folder_path": "Layouts / Stock",
+      "parent_id": 11,
+      "place": 2,
+      "encrypted_data_bytes": 1295,
+      "meta": {
+        "uuid": "",
+        "revision": "11",
+        "created": "9/17/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Fired Up Software",
+          "company": null,
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 216,
+          "height": 279
+        },
+        "name": "Full Printout",
+        "description": "This layout will print the Bead Chart and Bead Legend on a single page PLUS a Word Chart starting on the 2nd page."
+      }
+    },
+    {
+      "id": 66,
+      "type": "layout",
+      "name": "Just the Pattern",
+      "folder_path": "Layouts / Stock",
+      "parent_id": 11,
+      "place": 3,
+      "encrypted_data_bytes": 717,
+      "meta": {
+        "uuid": "",
+        "revision": "4",
+        "created": "9/25/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Fired Up Software",
+          "company": null,
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 216,
+          "height": 279
+        },
+        "name": "Just the Pattern",
+        "description": "This layout will show a realistic view of what the pattern might look like when stitched up. The actual bead size will not be reproduced."
+      }
+    },
+    {
+      "id": 67,
+      "type": "layout",
+      "name": "Large Pattern",
+      "folder_path": "Layouts / Stock",
+      "parent_id": 11,
+      "place": 4,
+      "encrypted_data_bytes": 1255,
+      "meta": {
+        "uuid": "",
+        "revision": "12",
+        "created": "9/17/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Fired Up Software",
+          "company": null,
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 216,
+          "height": 279
+        },
+        "name": "Large Pattern",
+        "description": "This layout is meant for very large patterns and includes the Bead Legend, Bead Chart and Word Chart. It will fill as many pages as necessary."
+      }
+    },
+    {
+      "id": 68,
+      "type": "layout",
+      "name": "Extended Printout",
+      "folder_path": "Layouts / Stock",
+      "parent_id": 11,
+      "place": 5,
+      "encrypted_data_bytes": 1587,
+      "meta": {
+        "uuid": "",
+        "revision": "14",
+        "created": "9/17/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Fired Up Software",
+          "company": null,
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 216,
+          "height": 279
+        },
+        "name": "Extended Printout",
+        "description": "This layout is similar to the Full Printout but includes a little more information about the pattern and changes the location of the Bead Legend."
+      }
+    },
+    {
+      "id": 113,
+      "type": "layout",
+      "name": "2 Column Split",
+      "folder_path": "Layouts / Stock",
+      "parent_id": 11,
+      "place": 6,
+      "encrypted_data_bytes": 1349,
+      "meta": {
+        "uuid": "",
+        "revision": "13",
+        "created": "9/17/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Fired Up Software",
+          "company": null,
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 216,
+          "height": 279
+        },
+        "name": "2 Column Split",
+        "description": "This layout features a 2 column split Bead Graph and is useful for patterns that are tall and skinny."
+      }
+    },
+    {
+      "id": 114,
+      "type": "layout",
+      "name": "3 Column Split",
+      "folder_path": "Layouts / Stock",
+      "parent_id": 11,
+      "place": 8,
+      "encrypted_data_bytes": 1393,
+      "meta": {
+        "uuid": "",
+        "revision": "13",
+        "created": "9/17/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Fired Up Software",
+          "company": null,
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 216,
+          "height": 279
+        },
+        "name": "3 Column Split",
+        "description": "This layout features a 3 column split Bead Graph and is useful for patterns that are tall and skinny."
+      }
+    },
+    {
+      "id": 131,
+      "type": "layout",
+      "name": "2 Row Split",
+      "folder_path": "Layouts / Stock",
+      "parent_id": 11,
+      "place": 7,
+      "encrypted_data_bytes": 1349,
+      "meta": {
+        "uuid": "",
+        "revision": "15",
+        "created": "9/17/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Fired Up Software",
+          "company": null,
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 216,
+          "height": 279
+        },
+        "name": "2 Row Split",
+        "description": "This layout features a 2 row split Bead Graph and is useful for patterns that are wide and short."
+      }
+    },
+    {
+      "id": 132,
+      "type": "layout",
+      "name": "3 Row Split",
+      "folder_path": "Layouts / Stock",
+      "parent_id": 11,
+      "place": 9,
+      "encrypted_data_bytes": 1357,
+      "meta": {
+        "uuid": "",
+        "revision": "15",
+        "created": "9/17/09",
+        "modified": "5/22/14",
+        "author": {
+          "name": "Fired Up Software",
+          "company": null,
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 216,
+          "height": 279
+        },
+        "name": "3 Row Split",
+        "description": "This layout features a 3 row split Bead Graph and is useful for patterns that are wide and short."
+      }
+    }
+  ],
+  "stamps": [
+    {
+      "id": 84,
+      "type": "stamp",
+      "name": "Heart (small)",
+      "folder_path": "Stamps / Stock",
+      "parent_id": 5,
+      "place": 0,
+      "encrypted_data_bytes": 799,
+      "meta": {
+        "uuid": null,
+        "revision": "2",
+        "created": "9/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 40.5,
+          "height": 70
+        },
+        "name": "Heart (small)",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 85,
+      "type": "stamp",
+      "name": "Heart (Medium)",
+      "folder_path": "Stamps / Stock",
+      "parent_id": 5,
+      "place": 0,
+      "encrypted_data_bytes": 815,
+      "meta": {
+        "uuid": null,
+        "revision": "2",
+        "created": "9/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 78.3,
+          "height": 45.5
+        },
+        "name": "Heart (Medium)",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 86,
+      "type": "stamp",
+      "name": "Heart (Filled)",
+      "folder_path": "Stamps / Stock",
+      "parent_id": 5,
+      "place": 0,
+      "encrypted_data_bytes": 889,
+      "meta": {
+        "uuid": null,
+        "revision": "4",
+        "created": "9/11/2010",
+        "modified": "4/18/2011",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 78.3,
+          "height": 45.5
+        },
+        "name": "Heart (Filled)",
+        "description": "[none]"
+      }
+    },
+    {
+      "id": 91,
+      "type": "stamp",
+      "name": "Kanji-Abundance",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 925,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 29.7,
+          "height": 35
+        },
+        "name": "Kanji-Abundance",
+        "description": "The Kanji symbol for abundance or riches"
+      }
+    },
+    {
+      "id": 92,
+      "type": "stamp",
+      "name": "Kanji-Beauty",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 947,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 33.75,
+          "height": 36.75
+        },
+        "name": "Kanji-Beauty",
+        "description": "The Kanji symbol for Beauty"
+      }
+    },
+    {
+      "id": 93,
+      "type": "stamp",
+      "name": "Kanji-Earth",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 815,
+      "meta": {
+        "uuid": null,
+        "revision": "2",
+        "created": "11/12/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": "beadtool@gmail.com",
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 54,
+          "height": 50.75
+        },
+        "name": "Kanji-Earth",
+        "description": "The Kanji symbol for Earth"
+      }
+    },
+    {
+      "id": 94,
+      "type": "stamp",
+      "name": "Kanji-Energy",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 967,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 36.45,
+          "height": 36.75
+        },
+        "name": "Kanji-Energy",
+        "description": "The Kanji symbol for Energy"
+      }
+    },
+    {
+      "id": 95,
+      "type": "stamp",
+      "name": "Kanji-Fire",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 873,
+      "meta": {
+        "uuid": null,
+        "revision": "2",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-Fire",
+        "description": "The Kanji symbol for fire"
+      }
+    },
+    {
+      "id": 96,
+      "type": "stamp",
+      "name": "Kanji-God",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 873,
+      "meta": {
+        "uuid": null,
+        "revision": "2",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-God",
+        "description": "The Kanji symbol for God"
+      }
+    },
+    {
+      "id": 97,
+      "type": "stamp",
+      "name": "Kanji-Happiness",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 881,
+      "meta": {
+        "uuid": null,
+        "revision": "2",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-Happiness",
+        "description": "The Kanji symbol for happiness"
+      }
+    },
+    {
+      "id": 98,
+      "type": "stamp",
+      "name": "Kanji-Love",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 925,
+      "meta": {
+        "uuid": null,
+        "revision": "2",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-Love",
+        "description": "The Kanji symbol for love"
+      }
+    },
+    {
+      "id": 99,
+      "type": "stamp",
+      "name": "Kanji-Luck",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 947,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/10/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 35.1,
+          "height": 35
+        },
+        "name": "Kanji-Luck",
+        "description": "The Kanji symbol for luck"
+      }
+    },
+    {
+      "id": 100,
+      "type": "stamp",
+      "name": "Kanji-Man",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 913,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-Man",
+        "description": "The Kanji symbol for man"
+      }
+    },
+    {
+      "id": 101,
+      "type": "stamp",
+      "name": "Kanji-Rain",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 947,
+      "meta": {
+        "uuid": null,
+        "revision": "4",
+        "created": "11/11/2010",
+        "modified": "6/27/2011",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-Rain",
+        "description": "The Kanji symbol for rain"
+      }
+    },
+    {
+      "id": 102,
+      "type": "stamp",
+      "name": "Kanji-Samurai",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 937,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 35.1,
+          "height": 35
+        },
+        "name": "Kanji-Samurai",
+        "description": "The Kanji symbol for Samurai"
+      }
+    },
+    {
+      "id": 103,
+      "type": "stamp",
+      "name": "Kanji-Snow",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 889,
+      "meta": {
+        "uuid": null,
+        "revision": "2",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-Snow",
+        "description": "The Kanji symbol for snow"
+      }
+    },
+    {
+      "id": 104,
+      "type": "stamp",
+      "name": "Kanji-Sun",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 877,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-Sun",
+        "description": "The Kanji symbol for Sun"
+      }
+    },
+    {
+      "id": 105,
+      "type": "stamp",
+      "name": "Kanji-ThunderLightning",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 975,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-ThunderLightning",
+        "description": "The Kanji symbol for thunder and lightning"
+      }
+    },
+    {
+      "id": 106,
+      "type": "stamp",
+      "name": "Kanji-Water",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 921,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-Water",
+        "description": "The Kanji symbol for water"
+      }
+    },
+    {
+      "id": 107,
+      "type": "stamp",
+      "name": "Kanji-Wind",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 917,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-Wind",
+        "description": "The Kanji symbol for wind"
+      }
+    },
+    {
+      "id": 109,
+      "type": "stamp",
+      "name": "Kanji-Woman",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 913,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-Woman",
+        "description": "The Kanji symbol for woman"
+      }
+    },
+    {
+      "id": 110,
+      "type": "stamp",
+      "name": "Kanji-Zen",
+      "folder_path": "Stamps / Kanji",
+      "parent_id": 90,
+      "place": 0,
+      "encrypted_data_bytes": 943,
+      "meta": {
+        "uuid": null,
+        "revision": "3",
+        "created": "11/11/2010",
+        "modified": "11/12/2010",
+        "author": {
+          "name": "Christopher",
+          "company": "Fired Up Software",
+          "email": null,
+          "website": "www.beadtool.net"
+        },
+        "bead_size_mm": {
+          "width": 89.1,
+          "height": 134.75
+        },
+        "name": "Kanji-Zen",
+        "description": "The Kanji symbol for Zen"
+      }
+    }
+  ],
+  "folders": [
+    {
+      "id": 1,
+      "type": "pattern",
+      "name": "Patterns",
+      "parent_id": -1,
+      "path": "Patterns"
+    },
+    {
+      "id": 2,
+      "type": "pattern",
+      "name": "Free",
+      "parent_id": 1,
+      "path": "Patterns / Free"
+    },
+    {
+      "id": 3,
+      "type": "pattern",
+      "name": "My Patterns",
+      "parent_id": 1,
+      "path": "Patterns / My Patterns"
+    },
+    {
+      "id": 4,
+      "type": "stamp",
+      "name": "Stamps",
+      "parent_id": -1,
+      "path": "Stamps"
+    },
+    {
+      "id": 5,
+      "type": "stamp",
+      "name": "Stock",
+      "parent_id": 4,
+      "path": "Stamps / Stock"
+    },
+    {
+      "id": 6,
+      "type": "stamp",
+      "name": "Custom",
+      "parent_id": 4,
+      "path": "Stamps / Custom"
+    },
+    {
+      "id": 7,
+      "type": "palette",
+      "name": "Palettes",
+      "parent_id": -1,
+      "path": "Palettes"
+    },
+    {
+      "id": 8,
+      "type": "palette",
+      "name": "Stock",
+      "parent_id": 7,
+      "path": "Palettes / Stock"
+    },
+    {
+      "id": 9,
+      "type": "palette",
+      "name": "Custom",
+      "parent_id": 7,
+      "path": "Palettes / Custom"
+    },
+    {
+      "id": 10,
+      "type": "layout",
+      "name": "Layouts",
+      "parent_id": -1,
+      "path": "Layouts"
+    },
+    {
+      "id": 11,
+      "type": "layout",
+      "name": "Stock",
+      "parent_id": 10,
+      "path": "Layouts / Stock"
+    },
+    {
+      "id": 12,
+      "type": "layout",
+      "name": "Custom",
+      "parent_id": 10,
+      "path": "Layouts / Custom"
+    },
+    {
+      "id": 90,
+      "type": "stamp",
+      "name": "Kanji",
+      "parent_id": 4,
+      "path": "Stamps / Kanji"
+    }
+  ],
+  "options": [],
+  "tags": [
+    {
+      "ID": 1,
+      "locked": 0,
+      "tag": "[author_name]",
+      "value_bytes": 0
+    },
+    {
+      "ID": 2,
+      "locked": 0,
+      "tag": "[author_company]",
+      "value_bytes": 0
+    },
+    {
+      "ID": 3,
+      "locked": 0,
+      "tag": "[author_email]",
+      "value_bytes": 0
+    },
+    {
+      "ID": 4,
+      "locked": 0,
+      "tag": "[author_website]",
+      "value_bytes": 0
+    },
+    {
+      "ID": 5,
+      "locked": 0,
+      "tag": "[author_copyright]",
+      "value_bytes": 46
+    },
+    {
+      "ID": 6,
+      "locked": 0,
+      "tag": "[author_notes]",
+      "value_bytes": 0
+    },
+    {
+      "ID": 7,
+      "locked": 0,
+      "tag": "[usage_rights]",
+      "value_bytes": 0
+    }
+  ],
+  "tips": [
+    {
+      "id": 1,
+      "tip": "You don't have to close BeadTool to start a new pattern. Just click File->New from the main menu."
+    },
+    {
+      "id": 2,
+      "tip": "Right clicking on a color in your Bead List will bring up some nifty options."
+    },
+    {
+      "id": 3,
+      "tip": "You can get help at any time by clicking Help->Documentation from the main menu."
+    },
+    {
+      "id": 4,
+      "tip": "You can create your own custom palettes by clicking on Tools->My Palettes from the main menu."
+    },
+    {
+      "id": 5,
+      "tip": "To save all the colors in your Bead List as a custom palette just click File->Export->Bead List from the main menu."
+    },
+    {
+      "id": 6,
+      "tip": "You can delete all instances of a single color by right clicking on a color in your Bead List and selecting the Erase option."
+    },
+    {
+      "id": 7,
+      "tip": "Right clicking on a color in your pattern will select that color for drawing."
+    },
+    {
+      "id": 8,
+      "tip": "The developer of BeadTool is only an email away! Just visit www.beadtool.net"
+    },
+    {
+      "id": 9,
+      "tip": "It's a good idea to keep your copy of BeadTool up to date!"
+    },
+    {
+      "id": 10,
+      "tip": "If you don't like what your printouts look like just click File->Print Preview and choose a different layout."
+    },
+    {
+      "id": 11,
+      "tip": "You can export your patterns as pictures for sharing. Just click File->Export->Pattern from the main menu."
+    },
+    {
+      "id": 12,
+      "tip": "Moving the pattern or picture even slightly can give different results during the transfer."
+    },
+    {
+      "id": 13,
+      "tip": "Changing the brightness & contrast of your picture before loading it will give drastically different results when transferring."
+    },
+    {
+      "id": 14,
+      "tip": "Egyptian burial sites have yielded enormous quantities of beads. They were commonly worn to protect the wearer from misfortune rather than to express status or wealth."
+    },
+    {
+      "id": 15,
+      "tip": "From 1830-1850, the tiniest beads included sizes 20/0 and smaller. These small size beads are no longer made because the process is too labor intensive."
+    },
+    {
+      "id": 16,
+      "tip": "The Egyptian word for luck was \"SHA\", and \"SHA SHA\" came to be the word for bead."
+    },
+    {
+      "id": 17,
+      "tip": "During the 2 week Mardi Gras holiday in New Orleans, it's customary for women to \"flash\" the bead bearer in exchange for a string of cheap plastic beads."
+    },
+    {
+      "id": 18,
+      "tip": "Egyptians were making glass beads by 1365 B.C."
+    },
+    {
+      "id": 19,
+      "tip": "There are several thousand year old glass factories in Lebanon that are still in production."
+    },
+    {
+      "id": 20,
+      "tip": "You can suggest tips to be displayed here by contacting the developer."
+    }
+  ]
+}

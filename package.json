@@ -1,0 +1,19 @@
+{
+  "name": "designitbead-catalog-sync",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Weekly Shipwreck Beads catalog snapshot + diff for designitbead's customizer.",
+  "type": "commonjs",
+  "scripts": {
+    "weekly":  "node weekly.js",
+    "pull":    "node shipwreck.js",
+    "norm":    "node normalize.js",
+    "extract": "node extract.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.9.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
