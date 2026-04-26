@@ -7,3 +7,4 @@ Thumbs.db
 d11_meta.bin
 d11_data.bin
 logs/
+.env.local
