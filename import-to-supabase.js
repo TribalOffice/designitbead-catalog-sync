@@ -35,7 +35,11 @@ for (const line of fs.readFileSync(envPath, "utf8").split(/\r?\n/)) {
   const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.*)$/);
   if (m) process.env[m[1]] = m[2].trim();
 }
-const SUPABASE_URL = process.env.SUPABASE_URL;
+// Normalize SUPABASE_URL — strip trailing slash and any /rest/v1 suffix.
+// (Supabase Dashboard's Data API page shows the full REST endpoint, easy to copy by mistake.)
+const SUPABASE_URL = (process.env.SUPABASE_URL || "")
+  .replace(/\/+$/, "")
+  .replace(/\/rest\/v1$/, "");
 const SERVICE_KEY  = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!SUPABASE_URL || !SERVICE_KEY) {
   console.error("✗ .env.local must define SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY");
