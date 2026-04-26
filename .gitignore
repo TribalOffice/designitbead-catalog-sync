@@ -6,3 +6,4 @@ Thumbs.db
 # Working dumps from BeadTool4 reverse engineering — not part of the repo
 d11_meta.bin
 d11_data.bin
+logs/
