@@ -1,0 +1,20 @@
+{
+  "counts": {
+    "new": 0,
+    "removed": 0,
+    "price_changes": 0,
+    "went_out_of_stock": 5,
+    "back_in_stock": 0
+  },
+  "new_products_ids": [],
+  "removed_product_ids": [],
+  "price_changes": [],
+  "went_out_of_stock_ids": [
+    7751564492995,
+    7751773126851,
+    7751419363523,
+    7751373291715,
+    7751370899651
+  ],
+  "back_in_stock_ids": []
+}

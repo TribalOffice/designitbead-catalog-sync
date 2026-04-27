@@ -1,0 +1,187 @@
+{
+  "generated_at": "2026-04-26T17:25:34.889Z",
+  "report": [
+    {
+      "id": "op-white",
+      "name": "White",
+      "sku": "11SB112R",
+      "family": "11SB112",
+      "matches": 8
+    },
+    {
+      "id": "op-lt-green",
+      "name": "Light Green",
+      "sku": "11SB182R",
+      "family": "11SB182",
+      "matches": 10
+    },
+    {
+      "id": "op-orange",
+      "name": "Orange",
+      "sku": "11SB134R",
+      "family": "11SB134",
+      "matches": 9
+    },
+    {
+      "id": "op-black",
+      "name": "Black",
+      "sku": "11SB109R",
+      "family": "11SB109",
+      "matches": 13
+    },
+    {
+      "id": "op-yellow",
+      "name": "Yellow",
+      "sku": "11SB126R",
+      "family": "11SB126",
+      "matches": 8
+    },
+    {
+      "id": "op-tq-blue",
+      "name": "Turquoise Blue",
+      "sku": "11SB164R",
+      "family": "11SB164",
+      "matches": 6
+    },
+    {
+      "id": "op-lt-red",
+      "name": "Light Red",
+      "sku": "11SB142R",
+      "family": "11SB142",
+      "matches": 7
+    },
+    {
+      "id": "op-gold",
+      "name": "Gold",
+      "sku": "11SB122R",
+      "family": "11SB122",
+      "matches": 13
+    },
+    {
+      "id": "op-lime",
+      "name": "Lime Green",
+      "sku": "11SB181R",
+      "family": "11SB181",
+      "matches": 8
+    },
+    {
+      "id": "op-tq-green",
+      "name": "Turquoise Green",
+      "sku": "11SB185R",
+      "family": "11SB185",
+      "matches": 8
+    },
+    {
+      "id": "op-dk-pink",
+      "name": "Dark Pink",
+      "sku": "11SB193R",
+      "family": "11SB193",
+      "matches": 6
+    },
+    {
+      "id": "op-tan",
+      "name": "Tan Effect",
+      "sku": "11SB151R",
+      "family": "11SB151",
+      "matches": 2
+    },
+    {
+      "id": "op-dk-red",
+      "name": "Dark Red",
+      "sku": "11SB146R",
+      "family": "11SB146",
+      "matches": 6
+    },
+    {
+      "id": "op-brick-red",
+      "name": "Brick Red Mahogany",
+      "sku": "11SB148R",
+      "family": "11SB148",
+      "matches": 6
+    },
+    {
+      "id": "op-teal-blue",
+      "name": "Teal Blue",
+      "sku": "11SB168R",
+      "family": "11SB168",
+      "matches": 2
+    },
+    {
+      "id": "op-med-blue",
+      "name": "Medium Blue",
+      "sku": "11SB174R",
+      "family": "11SB174",
+      "matches": 6
+    },
+    {
+      "id": "op-lt-tq-blue",
+      "name": "Light Turquoise Blue",
+      "sku": "11SB162R",
+      "family": "11SB162",
+      "matches": 7
+    },
+    {
+      "id": "op-med-red",
+      "name": "Medium Red",
+      "sku": "11SB144R",
+      "family": "11SB144",
+      "matches": 7
+    },
+    {
+      "id": "op-bone",
+      "name": "Bone Effect",
+      "sku": "11SB150R",
+      "family": "11SB150",
+      "matches": 3
+    },
+    {
+      "id": "op-dk-green",
+      "name": "Dark Green",
+      "sku": "11SB186R",
+      "family": "11SB186",
+      "matches": 6
+    },
+    {
+      "id": "op-bright-green",
+      "name": "Bright Green",
+      "sku": "11SB982R",
+      "family": "11SB982",
+      "matches": 2
+    },
+    {
+      "id": "op-pale-tq-blue",
+      "name": "Pale Turquoise Blue",
+      "sku": "11SB161R",
+      "family": "11SB161",
+      "matches": 4
+    },
+    {
+      "id": "op-lt-brown",
+      "name": "Light Brown",
+      "sku": "11SB152R",
+      "family": "11SB152",
+      "matches": 6
+    },
+    {
+      "id": "op-navy-blue",
+      "name": "Navy Blue",
+      "sku": "11SB178R",
+      "family": "11SB178",
+      "matches": 6
+    },
+    {
+      "id": "op-royal-blue",
+      "name": "Royal Blue",
+      "sku": "11SB176R",
+      "family": "11SB176",
+      "matches": 6
+    },
+    {
+      "id": "op-pale-blue",
+      "name": "Pale Blue",
+      "sku": "11SB160R",
+      "family": "11SB160",
+      "matches": 6
+    }
+  ]
+}
