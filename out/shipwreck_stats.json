@@ -3,8 +3,8 @@
   "by_brand_family": {
     "Miyuki": 993,
     "BeadSmith Distribution": 69,
-    "Preciosa": 3144,
-    "Shipwreck": 555,
+    "Preciosa": 3145,
+    "Shipwreck": 554,
     "Other": 38,
     "Vintage": 818,
     "(unclassified)": 4
@@ -12,8 +12,8 @@
   "by_brand": {
     "Miyuki Delica": 993,
     "(unclassified)": 73,
-    "Preciosa Czech Seed Bead": 3144,
-    "Shipwreck House / Bundle": 555,
+    "Preciosa Czech Seed Bead": 3145,
+    "Shipwreck House / Bundle": 554,
     "Eclates de Perles": 36,
     "Vintage Venetian / Italian": 818,
     "Bead Chest": 1,
@@ -31,7 +31,7 @@
   },
   "with_manufacturer_code": 993,
   "with_size_label": 4318,
-  "in_stock": 3662,
-  "out_of_stock": 1959,
+  "in_stock": 3629,
+  "out_of_stock": 1992,
   "unclassified": 4
 }
