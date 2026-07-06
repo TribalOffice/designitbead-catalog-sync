@@ -1,37 +1,37 @@
 {
-  "total_unique_products": 5621,
+  "total_unique_products": 5654,
   "by_brand_family": {
-    "Miyuki": 993,
-    "BeadSmith Distribution": 69,
-    "Preciosa": 3145,
-    "Shipwreck": 554,
+    "Miyuki": 994,
+    "BeadSmith Distribution": 67,
+    "Preciosa": 3416,
+    "Shipwreck": 299,
+    "(unclassified)": 21,
     "Other": 38,
-    "Vintage": 818,
-    "(unclassified)": 4
+    "Vintage": 819
   },
   "by_brand": {
-    "Miyuki Delica": 993,
-    "(unclassified)": 73,
-    "Preciosa Czech Seed Bead": 3145,
-    "Shipwreck House / Bundle": 554,
+    "Miyuki Delica": 994,
+    "(unclassified)": 88,
+    "Preciosa Czech Seed Bead": 3416,
+    "Shipwreck House / Bundle": 299,
     "Eclates de Perles": 36,
-    "Vintage Venetian / Italian": 818,
+    "Vintage Venetian / Italian": 819,
     "Bead Chest": 1,
     "Czech Glass (Starman)": 1
   },
   "by_size": {
-    "11/0": 1931,
-    "10/0": 857,
-    "8/0": 463,
+    "11/0": 1934,
+    "10/0": 858,
+    "8/0": 464,
     "15/0": 145,
-    "6/0": 574,
     "13/0": 217,
-    "12/0": 118,
-    "14/0": 13
+    "6/0": 575,
+    "12/0": 119,
+    "14/0": 12
   },
-  "with_manufacturer_code": 993,
-  "with_size_label": 4318,
-  "in_stock": 3629,
-  "out_of_stock": 1992,
-  "unclassified": 4
+  "with_manufacturer_code": 994,
+  "with_size_label": 4324,
+  "in_stock": 3658,
+  "out_of_stock": 1996,
+  "unclassified": 21
 }
