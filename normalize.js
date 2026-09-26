@@ -18,6 +18,7 @@ const COLLECTIONS = [
   "3-cut-seed-beads",
   "vintage-seed-beads",
   "seed-beads",
+  "large-hole-pony-beads",
 ];
 
 // Bead-size whitelist — anything else is a regex false positive.
@@ -106,9 +107,28 @@ function parseTitle(title) {
   return out;
 }
 
+// Every Shipwreck product description ends with a "Specifications" list that
+// includes a literal "Finish: <value>" line — e.g. "Finish: Opaque",
+// "Finish: Silver Lined", "Finish: Transparent/Neon". This is far more
+// reliable than guessing from the title. Falls back to a title keyword scan
+// for the rare product missing the spec line.
+function classifyFinish(bodyHtml, title) {
+  const m = (bodyHtml || "").match(/<li>\s*Finish:\s*([^<]+)<\/li>/i);
+  if (m) return m[1].trim();
+  const t = title || "";
+  if (/\bsilver[\s-]?lined\b/i.test(t))     return "Silver Lined";
+  if (/\bpearl\b/i.test(t))                 return "Pearl";
+  if (/\bopaque\b.*\bluster\b/i.test(t))    return "Opaque/Luster";
+  if (/\bopaque\b.*\bmatte\b/i.test(t))     return "Opaque/Matte";
+  if (/\btrans(?:parent)?\b/i.test(t))      return "Transparent";
+  if (/\bopaque\b/i.test(t))                return "Opaque";
+  return null;
+}
+
 function normalize(product, sourceCollection) {
   const v = (product.variants && product.variants[0]) || {};
   const parsed = parseTitle(product.title || "");
+  const finish = classifyFinish(product.body_html, product.title);
 
   // Vendor is the primary classifier — much cleaner than title regex.
   const vendorClass = classifyByVendor(product.vendor);
@@ -125,6 +145,7 @@ function normalize(product, sourceCollection) {
     vendor_raw: product.vendor,
     brand: cls.brand,
     brand_family: cls.brand_family,
+    finish,
     product_type: product.product_type,
     tags: product.tags,
     title: product.title,
@@ -177,6 +198,7 @@ const stats = {
   by_brand_family: {},
   by_brand: {},
   by_size: {},
+  by_finish: {},
   with_manufacturer_code: normalized.filter(r => r.manufacturer_code).length,
   with_size_label: normalized.filter(r => r.size_label).length,
   in_stock: normalized.filter(r => r.variant.available).length,
@@ -189,6 +211,8 @@ for (const r of normalized) {
   stats.by_brand_family[bf] = (stats.by_brand_family[bf] || 0) + 1;
   stats.by_brand[b] = (stats.by_brand[b] || 0) + 1;
   if (r.size_label) stats.by_size[r.size_label] = (stats.by_size[r.size_label] || 0) + 1;
+  const f = r.finish || "(none)";
+  stats.by_finish[f] = (stats.by_finish[f] || 0) + 1;
 }
 
 fs.writeFileSync(path.join(OUT_DIR, "shipwreck_stats.json"), JSON.stringify(stats, null, 2));

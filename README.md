@@ -1,28 +1,42 @@
 # designitbead — catalog sync
 
-Pulls the Shipwreck Beads seed-bead catalog into portable JSON for the
-designitbead.com customizer. Runs weekly via a remote Claude Code routine that
-re-pulls, diffs against the previous snapshot, and commits the new snapshot
-back to this repo so we get version-controlled inventory history for free.
+Pulls supplier catalogs into portable JSON for the designitbead.com customizer
+and refreshes prices + stock in Supabase — **by hand, when you choose**:
+
+- **Shipwreck Beads** — seed beads (Delica, Preciosa rocailles, silver-lined)
+- **Bead Tin** (beadtin.com) — the 9mm barrel pony beads (opaque + matte)
 
 Also contains the one-time BeadTool4 + BCP6 extraction work that established
 the palette catalog skeleton (17 bead lines + physical bead dimensions in mm).
 
-## Weekly sync — what happens
+## Manual refresh — what happens
 
-```
-node weekly.js
-```
+Double-click **`refresh.bat`** (or `npm run refresh`):
 
-1. Loads the previous `out/shipwreck_seed_beads.normalized.json` if present.
-2. Runs `shipwreck.js` (Shopify `/products.json` pull, ~7 min, polite pace).
-3. Runs `normalize.js` (parse + classify, ~5 sec).
-4. Diffs prev vs new by `shopify_product_id`: new, removed, price changes,
-   stock flips.
-5. Writes a markdown report + dated snapshot to `snapshots/{YYYY-MM-DD}/`
-   and prints the report to stdout.
+1. Copies the current pulls to `out/.previous/` (one previous copy only).
+2. Pulls Shipwreck (`shipwreck.js` + `normalize.js`, ~7 min, polite pace) and
+   Bead Tin (`beadtin.js`, ~10 s). A pull under half the previous size is
+   treated as a block / network failure and the previous data is restored.
+3. Writes `out/REPORT.md` — new listings, price changes, stock flips.
+4. Runs `import-to-supabase.js`, which prints what would change in Supabase
+   and asks **"Apply these changes to Supabase? (y/N)"**. Nothing is written
+   unless you type `y`. `npm run import:dry` shows the changes without asking.
 
-The remote routine then `git commit && git push`es so next week has a baseline.
+The import only updates supplier rows (prices, stock) and each bead color's
+available / cheapest-price summary — computed from **all** its suppliers.
+Colors with no supplier rows are left alone. It never adds bead colors.
+
+**Prices are always the supplier's regular price (MSRP)** — the higher of
+Shopify's `price` and `compare_at_price` (`msrp.js`). Supplier sales (seasonal
+or random) are ignored, so they never move kit costs; the report just notes
+how many products are on sale. `compare_at_price_usd` keeps the raw value.
+
+Logs go to `logs/refresh-YYYY-MM-DD.log`. Nothing is committed or pushed.
+
+> The old weekly Task Scheduler job ("Designitbead Weekly Catalog Sync",
+> `weekly.bat` / `weekly.js`) was **disabled on 2026-09-25** — it wrote a dated
+> full-catalog snapshot every week (storage) and had been failing silently.
+> Older snapshots live in this repo's git history.
 
 ---
 

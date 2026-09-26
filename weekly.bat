@@ -1,4 +1,5 @@
 @echo off
+REM RETIRED 2026-09-25 — the scheduled task is disabled; use refresh.bat instead.
 REM Windows Task Scheduler wrapper for the weekly Shipwreck catalog sync.
 REM Logs every run to logs\weekly-YYYY-MM-DD.log so failures are diagnosable.
 REM On success, commits the new snapshot to GitHub for version-controlled history.

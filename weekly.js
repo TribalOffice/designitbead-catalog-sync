@@ -1,3 +1,7 @@
+// RETIRED 2026-09-25 — the scheduled weekly sync is disabled (Task Scheduler
+// "Designitbead Weekly Catalog Sync"). Use refresh.bat / refresh.js instead:
+// manual, Shipwreck + Bead Tin, no dated snapshots, no git push.
+//
 // Weekly orchestrator for the remote routine.
 // Flow:
 //   1. Load previous snapshot (out/shipwreck_seed_beads.normalized.json) if it exists.

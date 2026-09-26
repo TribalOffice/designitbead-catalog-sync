@@ -2,13 +2,18 @@
   "name": "designitbead-catalog-sync",
   "version": "0.1.0",
   "private": true,
-  "description": "Weekly Shipwreck Beads catalog snapshot + diff for designitbead's customizer.",
+  "description": "Manual Shipwreck + Bead Tin catalog refresh (prices + stock) for designitbead's customizer.",
   "type": "commonjs",
   "scripts": {
-    "weekly":  "node weekly.js",
-    "pull":    "node shipwreck.js",
-    "norm":    "node normalize.js",
-    "extract": "node extract.js"
+    "refresh": "node refresh.js",
+    "pull:beadtin": "node beadtin.js",
+    "import": "node import-to-supabase.js",
+    "import:dry": "node import-to-supabase.js --dry-run",
+    "weekly": "node weekly.js",
+    "pull": "node shipwreck.js",
+    "norm": "node normalize.js",
+    "extract": "node extract.js",
+    "gen-migration": "node generate-migration.js"
   },
   "dependencies": {
     "better-sqlite3": "^12.9.0"

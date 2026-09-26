@@ -23,6 +23,7 @@ const COLLECTIONS = [
   "3-cut-seed-beads",
   "vintage-seed-beads",
   "seed-beads",                        // parent of all — catches stragglers
+  "large-hole-pony-beads",             // pony beads (mixed w/ other large-hole shapes — filtered downstream)
 ];
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }

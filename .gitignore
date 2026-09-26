@@ -8,3 +8,10 @@ d11_meta.bin
 d11_data.bin
 logs/
 .env.local
+
+# Manual refresh (refresh.js) — local working copies, not history
+out/.previous/
+out/REPORT.md
+out/import_report.json
+out/beadtin_barrels.normalized.json
+snapshots/
